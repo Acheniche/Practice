@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IProduct } from '../../models/IProduct'
 import { getAllProducts } from './ActionCreators'
 
-interface ProductState {
+export interface ProductState {
   products: IProduct[]
   isLoading: boolean
   error: string
