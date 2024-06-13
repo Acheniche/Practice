@@ -5,16 +5,20 @@ import { getAllProducts } from '../../store/reducers/ActionCreators'
 
 function Home() {
   const dispatch = useAppDispatch()
-  const { products } = useAppSelector((state) => state.getAllProductsReducer)
+  const { products, isLoading, error } = useAppSelector(
+    (state) => state.getAllProductsReducer
+  )
 
   useEffect(() => {
     dispatch(getAllProducts())
-  })
+  }, [])
 
   return (
-    <>
-      <div>{JSON.stringify(products, null, 2)}</div>
-    </>
+    <div>
+      {isLoading && <h1>Loading...</h1>}
+      {error && <h1>{error}</h1>}
+      {JSON.stringify(products, null, 2)}
+    </div>
   )
 }
 
