@@ -12,7 +12,6 @@ export const ENschema = yup.object().shape({
   Password: yup
     .string()
     .matches(
-      // /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).*$/,
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).*$/,
       'Password must contain at least 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character'
     )
@@ -27,7 +26,6 @@ export const ENschemaLogin = yup.object().shape({
   Password: yup
     .string()
     .matches(
-      // /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).*$/,
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).*$/,
       'Password must contain at least 1 number, 1 uppercase letter, 1 lowercase letter, and 1 special character'
     )

@@ -1,5 +1,8 @@
 body {
   transition: background-color 0.3s ease;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .toggle-container {
@@ -13,8 +16,8 @@ body {
 }
 
 .toggle-label {
-  width: 50px;
-  height: 25px;
+  width: 45px;
+  height: 21px;
   background-color: #ccc;
   border-radius: 25px;
   position: relative;
@@ -24,8 +27,8 @@ body {
 
 .toggle-label::before {
   content: '';
-  width: 23px;
-  height: 23px;
+  width: 19px;
+  height: 19px;
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
@@ -39,17 +42,36 @@ body {
 }
 
 header {
-  max-width: 1248px;
-  max-height: 42px;
-  margin: 64px 96px 0px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
-.Logo {
-  font-family: Allerta Stencil;
-  font-size: 35px;
-  font-weight: 400;
-  line-height: 40.5px;
-  text-align: left;
+.header-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000;
+  align-items: center;
+}
+
+.separator {
+  width: 1px;
+  height: 17px;
+  background-color: #707070;
+  margin-right: 13px;
+}
+
+a.logo {
   margin: 0;
 }

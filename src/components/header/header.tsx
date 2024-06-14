@@ -1,10 +1,13 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { themeSlice } from '../../store/reducers/ThemeSlice'
-import './styles.css'
+import './header.css'
 import { Link } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, logout } from '../Login/firebase'
+import logo from '../../assets/Modsen SHOPPE.svg'
+import search from '../../assets/Icon color.svg'
+import cart from '../../assets/shopping-cart 1.svg'
 
 function Header() {
   const [user] = useAuthState(auth)
@@ -17,26 +20,48 @@ function Header() {
   }
 
   useEffect(() => {
-    document.body.style.backgroundColor = isOn ? '#000000' : '#ffffff'
+    document.body.style.backgroundColor = isOn ? '#707070' : '#ffffff'
   }, [isOn])
 
   return (
     <header>
-      <h1 className="Logo">Modsen SHOPPE</h1>
-      <div className="toggle-container">
-        <input
-          type="checkbox"
-          id="toggle-button"
-          className="toggle-button"
-          checked={isOn}
-          onChange={handleChange}
-        />
-        <label htmlFor="toggle-button" className="toggle-label"></label>
+      <div className="logo">
+        <Link to="/">
+          <img src={logo} className="logo" alt="logo" />
+        </Link>
       </div>
-      <Link to="/">Main</Link>
-      {!user ? <Link to="/login">Login</Link> : null}
-      {!user ? <Link to="/registration">Registration</Link> : null}
-      {user ? <button onClick={logout}>Выйти</button> : null}
+      <div className="header-controls">
+        <nav>
+          <a>
+            <Link to="/shop">Shop</Link>
+          </a>
+          <div className="separator"></div>
+          <div className="toggle-container">
+            <input
+              type="checkbox"
+              id="toggle-button"
+              className="toggle-button"
+              checked={isOn}
+              onChange={handleChange}
+            />
+            <label htmlFor="toggle-button" className="toggle-label"></label>
+          </div>
+
+          <a className="logo">
+            <Link to="/">
+              <img src={search} className="logo" alt="logo" />
+            </Link>
+          </a>
+          <a className="logo">
+            <Link to="/cart">
+              <img src={cart} className="logo" alt="logo" />
+            </Link>
+          </a>
+          {!user ? <Link to="/login">Login</Link> : null}
+          {!user ? <Link to="/registration">Registration</Link> : null}
+          {user ? <a onClick={logout}>Выйти</a> : null}
+        </nav>
+      </div>
     </header>
   )
 }

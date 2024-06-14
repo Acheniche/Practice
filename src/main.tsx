@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './index.css'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.tsx'
 import { Provider } from 'react-redux'
 import { setupStore } from './store/store.ts'
