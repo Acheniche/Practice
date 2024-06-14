@@ -51,7 +51,7 @@ function Registration() {
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
         />
-        <p>{errors.Name?.message}</p>
+        <p className="error-message">{errors.Name?.message}</p>
         <input
           type="text"
           className="register__textBox"
@@ -60,7 +60,7 @@ function Registration() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
-        <p>{errors.Email?.message}</p>
+        <p className="error-message">{errors.Email?.message}</p>
         <input
           type="password"
           className="register__textBox"
@@ -69,7 +69,7 @@ function Registration() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <p>{errors.Password?.message}</p>
+        <p className="error-message">{errors.Password?.message}</p>
         <input
           type="submit"
           disabled={!isValid}
