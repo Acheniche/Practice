@@ -63,6 +63,10 @@ nav a {
   text-decoration: none;
   color: #000;
   align-items: center;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: #707070;
 }
 
 .separator {

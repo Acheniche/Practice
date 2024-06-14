@@ -35,7 +35,7 @@ function Login() {
 
   return (
     <div>
-      <h1>Login Page</h1>
+      <h1>Login</h1>
       <div className="login__container">
         <input
           type="text"
@@ -45,7 +45,7 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder={'E-mail Address'}
         />
-        <p>{errors.Email?.message}</p>
+        <p className="error-message">{errors.Email?.message}</p>
         <input
           type="password"
           className="login__textBox"
@@ -54,7 +54,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder={'Password'}
         />
-        <p>{errors.Password?.message}</p>
+        <p className="error-message">{errors.Password?.message}</p>
         <input
           type="submit"
           disabled={!isValid}
