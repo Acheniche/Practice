@@ -8,12 +8,14 @@ import { auth, logout } from '../Login/firebase'
 import logo from '../../assets/Modsen SHOPPE.svg'
 import search from '../../assets/Icon color.svg'
 import cart from '../../assets/shopping-cart 1.svg'
+import { userSlice } from '../../store/reducers/UserSlice'
 
 function Header() {
   const [user] = useAuthState(auth)
   const { isOn } = useAppSelector((state) => state.themeReducer)
   const dispatch = useAppDispatch()
   const { changeTheme } = themeSlice.actions
+  const { setUser } = userSlice.actions
 
   const handleChange = () => {
     dispatch(changeTheme())
@@ -22,6 +24,11 @@ function Header() {
   useEffect(() => {
     document.body.style.backgroundColor = isOn ? '#707070' : '#ffffff'
   }, [isOn])
+
+  const handleLogout = () => {
+    logout()
+    dispatch(setUser(null))
+  }
 
   return (
     <header>
@@ -59,7 +66,7 @@ function Header() {
           </a>
           {!user ? <Link to="/login">Login</Link> : null}
           {!user ? <Link to="/registration">Registration</Link> : null}
-          {user ? <a onClick={logout}>Выйти</a> : null}
+          {user ? <a onClick={handleLogout}>Logout</a> : null}
         </nav>
       </div>
     </header>

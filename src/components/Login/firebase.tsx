@@ -23,7 +23,19 @@ const db = getFirestore(app)
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
+    // добавить проверку на логин и пароль
+    //localStorage.clear();
+    //users.forEach(async (user) => {
+    //  if (user.email == email && user.password == password ) {
     await signInWithEmailAndPassword(auth, email, password)
+    //  localStorage.setItem('user', JSON.stringify(user))
+    // }
+    //})
+    // setTimeout(() => {
+    //   if (localStorage.getItem('user') == null) {
+    //     alert('Wrong login or password');
+    //   }
+    // }, 1000);
   } catch (err) {
     console.error(err)
     if (err instanceof Error) {
@@ -39,6 +51,7 @@ const registerWithEmailAndPassword = async (
 ) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password)
+    // добавить проверку на логин и пароль, а может и нет, хз
     const user = res.user
     await addDoc(collection(db, 'users'), {
       uid: user.uid,

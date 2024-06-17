@@ -6,12 +6,22 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { ENschemaLogin } from '../Validation/Shema'
 import './login.css'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { getAllUsers } from '../../store/reducers/ActionCreators'
+import { IUser } from '../../models/IUser'
+import { userSlice } from '../../store/reducers/UserSlice'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
+
+  const dispatch = useAppDispatch()
+  const { users } = useAppSelector((state) => state.getAllUsersReducer)
+
+  const { setUser } = userSlice.actions
+  const { User } = useAppSelector((state) => state.userReducer)
 
   const initialSchema = ENschemaLogin
 
@@ -24,6 +34,7 @@ function Login() {
   })
 
   useEffect(() => {
+    dispatch(getAllUsers())
     if (loading) {
       // maybe trigger a loading screen
       return
@@ -32,6 +43,21 @@ function Login() {
       navigate('/')
     }
   }, [user, loading, navigate])
+
+  const submit = (email: string, password: string, users: IUser[]) => {
+    users.forEach(async (user) => {
+      if (user.email == email && user.password == password) {
+        logInWithEmailAndPassword(email, password)
+        dispatch(setUser(user))
+      }
+    })
+    if (!User) {
+      const err = document.getElementById('Wrong')
+      if (err) {
+        err.textContent = 'Wrong email or password'
+      }
+    }
+  }
 
   return (
     <div>
@@ -55,11 +81,12 @@ function Login() {
           placeholder={'Password'}
         />
         <p className="error-message">{errors.Password?.message}</p>
+        <p className="error-message" id="Wrong"></p>
         <input
           type="submit"
           disabled={!isValid}
           className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={() => submit(email, password, users)}
           value={'Login'}
         />
       </div>

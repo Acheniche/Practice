@@ -36,18 +36,6 @@ export const getAllProductsSlice = createSlice({
         state.error = action.payload
       })
   },
-  // [getAllProducts.fulfilled.type]: (state, action: PayloadAction<IProduct[]>) =>{
-  //     state.isLoading = false;
-  //     state.error = '';
-  //     state.products = action.payload;
-  // },
-  // [getAllProducts.pending.type]: (state) => {
-  //     state.isLoading = true;
-  // },
-  // [getAllProducts.rejected.type]: (state, action: PayloadAction<string>) => {
-  //     state.isLoading = false;
-  //     state.error = action.payload;
-  // }
 })
 
 export default getAllProductsSlice.reducer

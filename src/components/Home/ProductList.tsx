@@ -1,4 +1,4 @@
-import { ProductState } from '../../store/reducers/getAllProductsSlice'
+import { ProductState } from '../../store/reducers/GetAllProductsSlice'
 
 const ProductList = ({ products }: ProductState) => {
   return (
