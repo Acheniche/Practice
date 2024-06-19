@@ -1,30 +1,25 @@
-import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { getUserCart } from '../../store/reducers/ActionCreators'
+import { useState, useEffect } from 'react'
+import { CartItem } from '../../models/ICartItem'
+import { auth } from '../Login/firebase'
+import { getCartItems } from './CartControls/ControlFunctions'
 import CartItems from './CartItems'
 
-function Cart() {
-  //const [user] = useAuthState(auth);
-  //console.log(user?.uid);
-  //const {user} = useAppSelector(state => state.userReducer);
-  // const  {setUser} = userSlice.actions;
-
-  const dispatch = useAppDispatch()
-  const { User } = useAppSelector((state) => state.userReducer)
-  const { cart, isLoading } = useAppSelector(
-    (state) => state.getUserCartReducer
-  )
+const Cart = () => {
+  const [items, setItems] = useState<CartItem[]>([])
 
   useEffect(() => {
-    dispatch(getUserCart(User?.id || 10))
-  }, [])
+    const fetchCartItems = async () => {
+      const cartItems = await getCartItems()
+      setItems(cartItems)
+    }
+    fetchCartItems()
+  }, [auth.currentUser])
 
   return (
-    <>
-      {isLoading && <h1>Loading...</h1>}
-      <CartItems cart={cart} />
-      <h1>{User?.id}</h1>
-    </>
+    <div>
+      <h1>Cart</h1>
+      <CartItems items={items} setItems={setItems} />
+    </div>
   )
 }
 

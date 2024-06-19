@@ -4,24 +4,14 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { ENschemaLogin } from '../Validation/Shema'
+import { ENschemaLogin } from '../Validation/LoginShema'
 import './login.css'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { getAllUsers } from '../../store/reducers/ActionCreators'
-import { IUser } from '../../models/IUser'
-import { userSlice } from '../../store/reducers/UserSlice'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [user, loading] = useAuthState(auth)
   const navigate = useNavigate()
-
-  const dispatch = useAppDispatch()
-  const { users } = useAppSelector((state) => state.getAllUsersReducer)
-
-  const { setUser } = userSlice.actions
-  const { User } = useAppSelector((state) => state.userReducer)
 
   const initialSchema = ENschemaLogin
 
@@ -34,7 +24,6 @@ function Login() {
   })
 
   useEffect(() => {
-    dispatch(getAllUsers())
     if (loading) {
       // maybe trigger a loading screen
       return
@@ -44,24 +33,9 @@ function Login() {
     }
   }, [user, loading, navigate])
 
-  const submit = (email: string, password: string, users: IUser[]) => {
-    users.forEach(async (user) => {
-      if (user.email == email && user.password == password) {
-        logInWithEmailAndPassword(email, password)
-        dispatch(setUser(user))
-      }
-    })
-    if (!User) {
-      const err = document.getElementById('Wrong')
-      if (err) {
-        err.textContent = 'Wrong email or password'
-      }
-    }
-  }
-
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Login Page</h1>
       <div className="login__container">
         <input
           type="text"
@@ -71,7 +45,7 @@ function Login() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder={'E-mail Address'}
         />
-        <p className="error-message">{errors.Email?.message}</p>
+        <p>{errors.Email?.message}</p>
         <input
           type="password"
           className="login__textBox"
@@ -80,13 +54,12 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder={'Password'}
         />
-        <p className="error-message">{errors.Password?.message}</p>
-        <p className="error-message" id="Wrong"></p>
+        <p>{errors.Password?.message}</p>
         <input
           type="submit"
           disabled={!isValid}
           className="login__btn"
-          onClick={() => submit(email, password, users)}
+          onClick={() => logInWithEmailAndPassword(email, password)}
           value={'Login'}
         />
       </div>

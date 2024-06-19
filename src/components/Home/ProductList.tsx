@@ -2,6 +2,7 @@ import { ProductState } from '../../store/reducers/GetAllProductsSlice'
 import eye from '../../assets/eye-svgrepo-com 1.svg'
 import heart from '../../assets/heart-svgrepo-com 1.svg'
 import cart from '../../assets/shopping-cart 1 (1).svg'
+import { addItemToCart } from '../Cart/CartControls/ControlFunctions'
 
 const ProductList = ({ products }: ProductState) => {
   return (
@@ -22,7 +23,22 @@ const ProductList = ({ products }: ProductState) => {
                   <img src={heart} />
                 </span>
               </div>
-              <button className="add-to-cart">Add to Cart</button>
+              <button
+                className="add-to-cart"
+                onClick={() =>
+                  addItemToCart({
+                    id: product.id,
+                    name: product.title,
+                    description: product.description,
+                    imageUrl: product.image,
+                    price: parseFloat(product.price),
+                    category: product.category,
+                    quantity: 1,
+                  })
+                }
+              >
+                Add to Cart
+              </button>
             </div>
             <div className="product-details">
               <h3>{product.title}</h3>

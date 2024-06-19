@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { themeSlice } from '../../store/reducers/ThemeSlice'
 import './header.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, logout } from '../Login/firebase'
 import logo from '../../assets/Modsen SHOPPE.svg'
@@ -16,6 +16,7 @@ function Header() {
   const dispatch = useAppDispatch()
   const { changeTheme } = themeSlice.actions
   const { setUser } = userSlice.actions
+  const navigate = useNavigate()
 
   const handleChange = () => {
     dispatch(changeTheme())
@@ -28,6 +29,7 @@ function Header() {
   const handleLogout = () => {
     logout()
     dispatch(setUser(null))
+    navigate('/')
   }
 
   return (
