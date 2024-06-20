@@ -5,12 +5,21 @@ import getAllUsersReducer from './reducers/GetAllUsersSlice'
 import userReducer from './reducers/UserSlice'
 import getUserCartReducer from './reducers/GetUserCartSlice'
 
+import categoryReducer from './reducers/CategorySlice'
+import sortReducer from './reducers/SortSlice'
+import productsReducer from './reducers/ProductsSlice'
+import priceRangeReducer from './reducers/PriceRangeSlice'
+
 const rootReducer = combineReducers({
   themeReducer,
   getAllProductsReducer,
   getAllUsersReducer,
   userReducer,
   getUserCartReducer,
+  categoryReducer,
+  sortReducer,
+  productsReducer,
+  priceRangeReducer,
 })
 
 export const setupStore = () => {

@@ -1,0 +1,36 @@
+.range-slider {
+  width: 260px;
+  position: relative;
+  margin: 20px 0;
+}
+
+.range-track {
+  position: relative;
+  width: 260px;
+  height: 2px;
+  background: rgba(216, 216, 216, 1);
+}
+
+.range-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 10px;
+  background: rgba(0, 0, 0, 1);
+  cursor: pointer;
+}
+
+.range-highlight {
+  position: absolute;
+  height: 2px;
+  background: rgba(0, 0, 0, 1);
+}
+
+p {
+  font-family: DM Sans;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+}
