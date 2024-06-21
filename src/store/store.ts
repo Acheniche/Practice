@@ -1,21 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import themeReducer from './reducers/ThemeSlice'
-import getAllProductsReducer from './reducers/GetAllProductsSlice'
-import getAllUsersReducer from './reducers/GetAllUsersSlice'
-import userReducer from './reducers/UserSlice'
-import getUserCartReducer from './reducers/GetUserCartSlice'
-
-import categoryReducer from './reducers/CategorySlice'
-import sortReducer from './reducers/SortSlice'
-import productsReducer from './reducers/ProductsSlice'
-import priceRangeReducer from './reducers/PriceRangeSlice'
+import themeReducer from './reducers/themeSlice'
+import getAllProductsReducer from './reducers/getAllProductsSlice'
+import userReducer from './reducers/userSlice'
+import categoryReducer from './reducers/categorySlice'
+import sortReducer from './reducers/sortSlice'
+import productsReducer from './reducers/productsSlice'
+import priceRangeReducer from './reducers/priceRangeSlice'
 
 const rootReducer = combineReducers({
   themeReducer,
   getAllProductsReducer,
-  getAllUsersReducer,
   userReducer,
-  getUserCartReducer,
   categoryReducer,
   sortReducer,
   productsReducer,

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import './style.css'
-import { getAllProducts } from '../../store/reducers/ActionCreators'
-import ProductList from './ProductList'
+import './index.css'
+import { getAllProducts } from '../../store/reducers/actionCreators'
+import ProductList from '../ProductList/index'
 
 function Home() {
   const dispatch = useAppDispatch()
@@ -16,7 +16,7 @@ function Home() {
   }, [dispatch])
 
   const toggleViewAll = () => {
-    setShowAll(!showAll)
+    setShowAll((prevShowAll) => !prevShowAll)
   }
 
   return (

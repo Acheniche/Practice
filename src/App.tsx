@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Header from './components/Header/header'
-import Home from './components/Home/Home'
-import Registration from './components/Registration/Registration'
-import Login from './components/Login/Login'
-import Cart from './components/Cart/Cart'
-import Shop from './components/Shop/Shop'
+import Header from './components/Header'
+import Home from './components/Home'
+import Registration from './components/Registration'
+import Login from './components/Login'
+import Cart from './components/Cart'
+import Shop from './components/Shop'
 
 function App() {
   return (

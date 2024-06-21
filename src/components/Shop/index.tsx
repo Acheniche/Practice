@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
-import './Shop.css'
-import RangeSlider from './components/RangeSlider'
+import './index.css'
+import RangeSlider from '../RangeSlider'
 import { useEffect, useState } from 'react'
 import { AppDispatch, RootState } from '../../store/store'
-import { fetchProducts } from '../../store/reducers/ProductsSlice'
-import ProductList from './ProductList'
+import { fetchProducts } from '../../store/reducers/productsSlice'
 import SearchIcon from '../../assets/Icon color (1).svg'
+import ProductList from '../ProductList'
 
 const Shop: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -13,8 +13,8 @@ const Shop: React.FC = () => {
     (state: RootState) => state.productsReducer.items
   )
 
-  const [minPrice, setMinPrice] = useState<number>(40)
-  const [maxPrice, setMaxPrice] = useState<number>(180)
+  const [minPrice, setMinPrice] = useState<number>(0)
+  const [maxPrice, setMaxPrice] = useState<number>(1000)
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [sortBy, setSortBy] = useState<'asc' | 'desc'>('asc')
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -110,7 +110,7 @@ const Shop: React.FC = () => {
             <button onClick={handleFilter}>Filter</button>
           </div>
         </div>
-        <ProductList products={filteredProducts} />
+        <ProductList products={filteredProducts} isLoading={false} error={''} />
       </div>
     </>
   )

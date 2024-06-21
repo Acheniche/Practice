@@ -1,13 +1,13 @@
-import { CartItem } from '../../../models/ICartItem'
-import { auth } from '../../Login/firebase'
-import { addItemToFirestoreCart } from './AddItemToCart'
-import { getFirestoreCartItems } from './GetCartItems'
+import { CartItem } from '../../../types/cartItem'
+import { auth } from '../../../utils/firebase'
+import { addItemToFirestoreCart } from './addItemToCart'
+import { getFirestoreCartItems } from './getCartItems'
 import {
   addItemToLocalStorageCart,
   getLocalStorageCartItems,
   removeItemFromLocalStorageCart,
-} from './LocalStorageCart'
-import { removeItemFromFirestoreCart } from './RemoveItemFronCart'
+} from './localStorageCart'
+import { removeItemFromFirestoreCart } from './removeItemFronCart'
 
 export const addItemToCart = async (item: CartItem) => {
   if (auth.currentUser) {

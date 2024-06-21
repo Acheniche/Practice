@@ -1,4 +1,4 @@
-import { CartItem } from '../../../models/ICartItem'
+import { CartItem } from '../../../types/cartItem'
 
 const CART_KEY = 'user_cart'
 

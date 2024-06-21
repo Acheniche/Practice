@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { themeSlice } from '../../store/reducers/ThemeSlice'
-import './header.css'
+import { themeSlice } from '../../store/reducers/themeSlice'
+import './index.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, logout } from '../Login/firebase'
+import { auth, logout } from '../../utils/firebase'
 import logo from '../../assets/Modsen SHOPPE.svg'
 import search from '../../assets/Icon color.svg'
 import cart from '../../assets/shopping-cart 1.svg'
-import { userSlice } from '../../store/reducers/UserSlice'
+import { userSlice } from '../../store/reducers/userSlice'
 
 function Header() {
   const [user] = useAuthState(auth)

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
-import { RangeSliderProps } from '../../../models/IFilter'
-import './RangeSlider.css'
+import { RangeSliderProps } from '../../types/filter'
+import './index.css'
 
 const RangeSlider: React.FC<RangeSliderProps> = ({
   min,

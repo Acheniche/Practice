@@ -1,6 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore'
-import { auth, db } from '../../Login/firebase'
-import { CartItem } from '../../../models/ICartItem'
+import { auth, db } from '../../../utils/firebase'
+import { CartItem } from '../../../types/cartItem'
 
 export const getFirestoreCartItems = async (): Promise<CartItem[]> => {
   try {

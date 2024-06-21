@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react'
+import { auth, logInWithEmailAndPassword } from '../../utils/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { Link, useNavigate } from 'react-router-dom'
-import { auth, registerWithEmailAndPassword } from '../Login/firebase'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { ENschema } from '../Validation/RegistrationShema'
-import './registration.css'
+import { ENschemaLogin } from './LoginShema'
+import './index.css'
 
-function Registration() {
+function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [user, loading] = useAuthState(auth)
-  const [name, setName] = useState('')
   const navigate = useNavigate()
 
-  const initialSchema = ENschema
+  const initialSchema = ENschemaLogin
 
   const {
     register,
@@ -34,57 +33,38 @@ function Registration() {
     }
   }, [user, loading, navigate])
 
-  const registerFB = () => {
-    if (!name) alert('Please enter name')
-    registerWithEmailAndPassword(name, email, password)
-  }
-
   return (
     <div>
-      <h1>Registration</h1>
-      <div className="register__container">
+      <h1>Login Page</h1>
+      <div className="login__container">
         <input
           type="text"
-          className="register__textBox"
-          value={name}
-          {...register('Name')}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <p>{errors.Name?.message}</p>
-        <input
-          type="text"
-          className="register__textBox"
+          className="login__textBox"
           value={email}
           {...register('Email')}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder={'E-mail Address'}
         />
         <p>{errors.Email?.message}</p>
         <input
           type="password"
-          className="register__textBox"
+          className="login__textBox"
           value={password}
           {...register('Password')}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
+          placeholder={'Password'}
         />
         <p>{errors.Password?.message}</p>
         <input
           type="submit"
           disabled={!isValid}
-          className="register__btn"
-          onClick={registerFB}
-          value="Send"
+          className="login__btn"
+          onClick={() => logInWithEmailAndPassword(email, password)}
+          value={'Login'}
         />
-      </div>
-      <div>
-        <h2>
-          Already have an account? <Link to="/login">Login</Link> now.
-        </h2>
       </div>
     </div>
   )
 }
 
-export default Registration
+export default Login

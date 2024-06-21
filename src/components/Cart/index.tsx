@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { CartItem } from '../../models/ICartItem'
-import { auth } from '../Login/firebase'
-import { getCartItems } from './CartControls/ControlFunctions'
+import { CartItem } from '../../types/cartItem'
+import { auth } from '../../utils/firebase'
+import { getCartItems } from './CartControls/controlFunctions'
 import CartItems from './CartItems'
 
 const Cart = () => {

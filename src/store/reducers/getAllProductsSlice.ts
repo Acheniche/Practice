@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { IProduct } from '../../models/IProduct'
-import { getAllProducts } from './ActionCreators'
+import { Product } from '../../types/product'
+import { getAllProducts } from './actionCreators'
 
 export interface ProductState {
-  products: IProduct[]
+  products: Product[]
   isLoading: boolean
   error: string
 }
@@ -22,7 +22,7 @@ export const getAllProductsSlice = createSlice({
     builder
       .addCase(
         getAllProducts.fulfilled,
-        (state, action: PayloadAction<IProduct[]>) => {
+        (state, action: PayloadAction<Product[]>) => {
           state.isLoading = false
           state.error = ''
           state.products = action.payload

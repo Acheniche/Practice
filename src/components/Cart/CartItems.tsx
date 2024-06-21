@@ -1,10 +1,10 @@
-import { ProductListProps } from '../../models/IProductListProps'
-import './Cart.css'
+import { ProductListProps } from '../../types/productListProps'
+import './index.css'
 import {
   addItemToCart,
   getCartItems,
   removeItemFromCart,
-} from './CartControls/ControlFunctions'
+} from './CartControls/controlFunctions'
 
 const CartItems = ({ items, setItems }: ProductListProps) => {
   const handleRemoveItem = async (itemId: number) => {
