@@ -5,6 +5,9 @@ import Registration from './components/Registration'
 import Login from './components/Login'
 import Cart from './components/Cart'
 import Shop from './components/Shop'
+import Product from './components/Product'
+import NotFound from './components/NotFound'
+import Contact from './components/Contact'
 
 function App() {
   return (
@@ -17,7 +20,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop" element={<Shop />} />
-          {/* add other routes */}
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     </BrowserRouter>

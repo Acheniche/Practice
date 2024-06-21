@@ -4,8 +4,11 @@ import heart from '../../assets/heart-svgrepo-com 1.svg'
 import cart from '../../assets/shopping-cart 1 (1).svg'
 import { addItemToCart } from '../Cart/CartControls/controlFunctions'
 import './index.css'
+import { useNavigate } from 'react-router-dom'
 
 const ProductList = ({ products }: ProductState) => {
+  const navigate = useNavigate()
+
   return (
     <div className="product-list">
       <div className="products-grid">
@@ -41,7 +44,10 @@ const ProductList = ({ products }: ProductState) => {
                 Add to Cart
               </button>
             </div>
-            <div className="product-details">
+            <div
+              className="product-details"
+              onClick={() => navigate(`/product/${product.id}`)}
+            >
               <h3>{product.title}</h3>
               <p>${product.price}</p>
             </div>

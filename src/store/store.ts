@@ -6,6 +6,7 @@ import categoryReducer from './reducers/categorySlice'
 import sortReducer from './reducers/sortSlice'
 import productsReducer from './reducers/productsSlice'
 import priceRangeReducer from './reducers/priceRangeSlice'
+import getProductByIdReducer from './reducers/getProductByIdSlice'
 
 const rootReducer = combineReducers({
   themeReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   sortReducer,
   productsReducer,
   priceRangeReducer,
+  getProductByIdReducer,
 })
 
 export const setupStore = () => {
