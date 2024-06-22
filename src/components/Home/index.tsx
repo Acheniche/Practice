@@ -1,34 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './index.css'
 import { getAllProducts } from '../../store/reducers/actionCreators'
 import ProductList from '../ProductList/index'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const dispatch = useAppDispatch()
   const { products, isLoading, error } = useAppSelector(
     (state) => state.productsReducer
   )
-  const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
     dispatch(getAllProducts())
   }, [dispatch])
 
-  const toggleViewAll = () => {
-    setShowAll((prevShowAll) => !prevShowAll)
-  }
-
   return (
     <>
       <div className="view-all-container">
         <h2>Shop The Latest</h2>
-        <button onClick={toggleViewAll}>
-          {showAll ? 'View Less' : 'View All'}
-        </button>
+        <Link to="/shop">
+          <p>View All</p>
+        </Link>
       </div>
       <ProductList
-        products={showAll ? products : products.slice(0, 6)}
+        products={products.slice(0, 6)}
         isLoading={false}
         error={''}
       />
