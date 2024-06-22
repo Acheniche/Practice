@@ -1,78 +1,77 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Product } from '../../types/product'
+import {
+  fetchProductById,
+  fetchProducts,
+  fetchSimilarProducts,
+  getAllProducts,
+} from './actionCreators'
+import { ProductsState } from '../../types/productsState'
 
-export interface Product {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: string
-  image: string
+const initialState: ProductsState = {
+  products: [],
+  product: null,
+  similarProducts: [],
+  error: null,
+  isLoading: false,
 }
-
-interface FetchProductsParams {
-  category: string
-  sort: 'asc' | 'desc'
-  minPrice: number
-  maxPrice: number
-  searchQuery: string
-}
-
-export const fetchProducts = createAsyncThunk(
-  'products/fetchProducts',
-  async ({
-    category,
-    sort,
-    minPrice,
-    maxPrice,
-    searchQuery,
-  }: FetchProductsParams) => {
-    const response = await fetch('https://fakestoreapi.com/products').then(
-      (data) => data.json()
-    )
-    let products: Product[] = response
-
-    if (category) {
-      products = products.filter((product) => product.category === category)
-    }
-    if (searchQuery) {
-      products = products.filter((product) =>
-        product.title.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    }
-    products = products.filter(
-      (product) => product.price >= minPrice && product.price <= maxPrice
-    )
-
-    if (sort === 'asc') {
-      products.sort((a, b) => a.price - b.price)
-    } else {
-      products.sort((a, b) => b.price - a.price)
-    }
-
-    return products
-  }
-)
 
 const productsSlice = createSlice({
   name: 'products',
-  initialState: {
-    items: [] as Product[],
-    status: 'idle',
-    error: null as string | null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getAllProducts.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(
+        getAllProducts.fulfilled,
+        (state, action: PayloadAction<Product[]>) => {
+          state.isLoading = false
+          state.products = action.payload
+          state.error = null
+        }
+      )
+      .addCase(getAllProducts.rejected, (state, action: PayloadAction<any>) => {
+        state.isLoading = false
+        state.error = action.payload
+      })
+      .addCase(fetchProductById.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(
+        fetchProductById.fulfilled,
+        (state, action: PayloadAction<Product>) => {
+          state.isLoading = false
+          state.product = action.payload
+          state.error = null
+        }
+      )
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.error.message || 'Something went wrong'
+      })
+      .addCase(
+        fetchSimilarProducts.fulfilled,
+        (state, action: PayloadAction<Product[]>) => {
+          state.similarProducts = action.payload
+        }
+      )
       .addCase(fetchProducts.pending, (state) => {
-        state.status = 'loading'
+        state.isLoading = true
       })
-      .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.status = 'succeeded'
-        state.items = action.payload
-      })
+      .addCase(
+        fetchProducts.fulfilled,
+        (state, action: PayloadAction<Product[]>) => {
+          state.isLoading = false
+          state.products = action.payload
+          state.error = null
+        }
+      )
       .addCase(fetchProducts.rejected, (state, action) => {
-        state.status = 'failed'
-        state.error = action.error.message as string
+        state.isLoading = false
+        state.error = action.error.message || 'Something went wrong'
       })
   },
 })

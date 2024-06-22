@@ -10,15 +10,12 @@ export const getFirestoreCartItems = async (): Promise<CartItem[]> => {
     }
 
     const cartRef = doc(db, 'carts', user.uid)
-    console.log('Fetching cart items for user:', user.uid)
     const cartDoc = await getDoc(cartRef)
 
     if (cartDoc.exists()) {
       const cartData = cartDoc.data()
-      console.log('Cart items:', cartData.items)
       return cartData.items
     } else {
-      console.log('No cart found for user')
       return []
     }
   } catch (error) {

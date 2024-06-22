@@ -7,7 +7,7 @@ import ProductList from '../ProductList/index'
 function Home() {
   const dispatch = useAppDispatch()
   const { products, isLoading, error } = useAppSelector(
-    (state) => state.getAllProductsReducer
+    (state) => state.productsReducer
   )
   const [showAll, setShowAll] = useState(false)
 

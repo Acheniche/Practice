@@ -3,14 +3,14 @@ import './index.css'
 import RangeSlider from '../RangeSlider'
 import { useEffect, useState } from 'react'
 import { AppDispatch, RootState } from '../../store/store'
-import { fetchProducts } from '../../store/reducers/productsSlice'
 import SearchIcon from '../../assets/Icon color (1).svg'
 import ProductList from '../ProductList'
+import { fetchProducts } from '../../store/reducers/actionCreators'
 
 const Shop: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const products = useSelector(
-    (state: RootState) => state.productsReducer.items
+    (state: RootState) => state.productsReducer.products
   )
 
   const [minPrice, setMinPrice] = useState<number>(0)

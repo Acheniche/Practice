@@ -33,8 +33,6 @@ export const addItemToFirestoreCart = async (item: CartItem) => {
     } else {
       await setDoc(cartRef, { items: [{ ...item, quantity: 1 }] })
     }
-
-    console.log('Item added to cart:', item.id)
   } catch (error) {
     console.error('Error adding item to cart:', error)
   }

@@ -30,14 +30,8 @@ export const removeItemFromFirestoreCart = async (itemId: number) => {
           )
         }
         await updateDoc(cartRef, { items: updatedItems })
-      } else {
-        console.log('Item not found in cart:', itemId)
       }
-    } else {
-      console.log('No cart found for user')
     }
-
-    console.log('Item removed from cart:', itemId)
   } catch (error) {
     console.error('Error removing item from cart:', error)
   }
