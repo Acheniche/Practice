@@ -13,10 +13,10 @@ const Product = () => {
   const { id } = useParams<{ id: string }>()
   const dispatch = useDispatch<AppDispatch>()
   const product = useSelector(
-    (state: RootState) => state.getProductByIdReducer.product
+    (state: RootState) => state.productsReducer.product
   )
   const similarProducts = useSelector(
-    (state: RootState) => state.getProductByIdReducer.similarProducts
+    (state: RootState) => state.productsReducer.similarProducts
   )
 
   useEffect(() => {

@@ -18,10 +18,26 @@ const ProductList = ({ products }: ProductState) => {
               <img src={product.image} alt={product.title} />
               <div className="icon-overlay">
                 <span className="icon">
-                  <img src={cart} />
+                  <img
+                    src={cart}
+                    onClick={() =>
+                      addItemToCart({
+                        id: product.id,
+                        name: product.title,
+                        description: product.description,
+                        imageUrl: product.image,
+                        price: product.price,
+                        category: product.category,
+                        quantity: 1,
+                      })
+                    }
+                  />
                 </span>
                 <span className="icon">
-                  <img src={eye} />
+                  <img
+                    src={eye}
+                    onClick={() => navigate(`/product/${product.id}`)}
+                  />
                 </span>
                 <span className="icon">
                   <img src={heart} />
