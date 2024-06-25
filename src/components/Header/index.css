@@ -45,6 +45,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  position: relative;
 }
 
 .header-controls {
@@ -52,9 +54,13 @@ header {
   align-items: center;
   justify-content: space-between;
 }
-nav {
+
+.desktop-nav {
   display: flex;
-  align-items: center;
+}
+
+.desktop-nav.hide {
+  display: none;
 }
 
 nav a {
@@ -64,6 +70,7 @@ nav a {
   align-items: center;
   transition: color 0.3s;
 }
+
 nav a:hover {
   color: #707070;
 }
@@ -77,4 +84,93 @@ nav a:hover {
 
 a.logo {
   margin: 0;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.burger .line {
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  transition: all 0.3s ease;
+}
+
+.burger .line.open:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.burger .line.open:nth-child(2) {
+  opacity: 0;
+}
+
+.burger .line.open:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mobile-menu.open {
+  display: block;
+  z-index: 1;
+}
+
+.mobile-menu nav a {
+  display: block;
+  margin: 10px 0;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icons .cart-icon {
+  display: none;
+  margin-right: 10px;
+}
+
+@media (min-width: 768px) {
+  .burger {
+    display: none;
+  }
+  .desktop-nav {
+    display: flex;
+  }
+  .icons .cart-icon {
+    display: none;
+  }
+  .logo {
+    max-width: 287px;
+  }
+}
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .icons .cart-icon {
+    display: block;
+  }
+  .logo {
+    max-width: 207px;
+  }
 }
