@@ -1,0 +1,57 @@
+.Error-container {
+  margin: 250px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.Error-container h1 {
+  font-family: DM Sans;
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 43px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.Error-container p {
+  font-family: DM Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  text-align: center;
+  margin: 0;
+}
+
+.Error-container button {
+  width: 187px;
+  height: 53px;
+  border-radius: 4px;
+  margin: 0 auto;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20.83px;
+  text-align: center;
+  background-color: white;
+  margin-top: 64px;
+}
+
+.Error-container button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .Error-container h1 {
+    font-size: 20px;
+  }
+  .Error-container p {
+    font-size: 12px;
+  }
+  .Error-container button {
+    width: 115px;
+    height: 32px;
+  }
+}
