@@ -39,37 +39,68 @@ function Registration() {
     registerWithEmailAndPassword(name, email, password)
   }
 
+  const handleClearName = () => setName('')
+  const handleClearEmail = () => setEmail('')
+  const handleClearPassword = () => setPassword('')
+
   return (
     <div>
-      <h1>Registration</h1>
       <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          {...register('Name')}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <p>{errors.Name?.message}</p>
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          {...register('Email')}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <p>{errors.Email?.message}</p>
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          {...register('Password')}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <p>{errors.Password?.message}</p>
+        <h1>Registration</h1>
+        <div className="input-wrapper">
+          <div className="input-container">
+            <input
+              type="text"
+              className="register__textBox"
+              value={name}
+              {...register('Name')}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full Name"
+            />
+            {name && (
+              <span className="clear-btn" onClick={handleClearName}>
+                ×
+              </span>
+            )}
+          </div>
+          <p className="error-message">{errors.Name?.message}</p>
+        </div>
+        <div className="input-wrapper">
+          <div className="input-container">
+            <input
+              type="text"
+              className="register__textBox"
+              value={email}
+              {...register('Email')}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="E-mail Address"
+            />
+            {email && (
+              <span className="clear-btn" onClick={handleClearEmail}>
+                ×
+              </span>
+            )}
+          </div>
+          <p className="error-message">{errors.Email?.message}</p>
+        </div>
+        <div className="input-wrapper">
+          <div className="input-container">
+            <input
+              type="password"
+              className="register__textBox"
+              value={password}
+              {...register('Password')}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+            {password && (
+              <span className="clear-btn" onClick={handleClearPassword}>
+                ×
+              </span>
+            )}
+          </div>
+          <p className="error-message">{errors.Password?.message}</p>
+        </div>
         <input
           type="submit"
           disabled={!isValid}
@@ -77,11 +108,9 @@ function Registration() {
           onClick={registerFB}
           value="Send"
         />
-      </div>
-      <div>
-        <h2>
+        <h1>
           Already have an account? <Link to="/login">Login</Link> now.
-        </h2>
+        </h1>
       </div>
     </div>
   )

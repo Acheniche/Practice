@@ -33,28 +33,49 @@ function Login() {
     }
   }, [user, loading, navigate])
 
+  const handleClearEmail = () => setEmail('')
+  const handleClearPassword = () => setPassword('')
+
   return (
     <div>
-      <h1>Login Page</h1>
       <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          {...register('Email')}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={'E-mail Address'}
-        />
-        <p>{errors.Email?.message}</p>
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          {...register('Password')}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder={'Password'}
-        />
-        <p>{errors.Password?.message}</p>
+        <h1>Login</h1>
+        <div className="input-wrapper">
+          <div className="input-container">
+            <input
+              type="text"
+              className="login__textBox"
+              value={email}
+              {...register('Email')}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={'E-mail Address'}
+            />
+            {email && (
+              <span className="clear-btn" onClick={handleClearEmail}>
+                ×
+              </span>
+            )}
+          </div>
+          <p className="error-message">{errors.Email?.message}</p>
+        </div>
+        <div className="input-wrapper">
+          <div className="input-container">
+            <input
+              type="password"
+              className="login__textBox"
+              value={password}
+              {...register('Password')}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder={'Password'}
+            />
+            {password && (
+              <span className="clear-btn" onClick={handleClearPassword}>
+                ×
+              </span>
+            )}
+          </div>
+          <p className="error-message">{errors.Password?.message}</p>
+        </div>
         <input
           type="submit"
           disabled={!isValid}
