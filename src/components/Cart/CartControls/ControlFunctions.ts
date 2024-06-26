@@ -1,9 +1,11 @@
 import { CartItem } from '../../../types/cartItem'
 import { auth } from '../../../utils/firebase'
 import { addItemToFirestoreCart } from './addItemToCart'
+import { clearFirestoreCart } from './clearFirestoreCart'
 import { getFirestoreCartItems } from './getCartItems'
 import {
   addItemToLocalStorageCart,
+  clearLocalStorageCart,
   getLocalStorageCartItems,
   removeItemFromLocalStorageCart,
 } from './localStorageCart'
@@ -30,5 +32,13 @@ export const getCartItems = async (): Promise<CartItem[]> => {
     return await getFirestoreCartItems()
   } else {
     return getLocalStorageCartItems()
+  }
+}
+
+export const clearCart = async () => {
+  if (auth.currentUser) {
+    await clearFirestoreCart()
+  } else {
+    clearLocalStorageCart()
   }
 }
