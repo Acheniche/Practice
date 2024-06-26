@@ -19,6 +19,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+  const burgerRef = useRef<HTMLDivElement>(null)
 
   const handleChange = () => {
     dispatch(changeTheme())
@@ -35,23 +36,28 @@ const Header: React.FC = () => {
   }
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
+    setMenuOpen((prevMenuOpen) => !prevMenuOpen)
   }
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    const target = event.target as HTMLElement
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(target) &&
+      !burgerRef.current?.contains(target)
+    ) {
       setMenuOpen(false)
     }
   }
 
   useEffect(() => {
     if (menuOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('click', handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('click', handleClickOutside)
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('click', handleClickOutside)
     }
   }, [menuOpen])
 
@@ -90,7 +96,7 @@ const Header: React.FC = () => {
           <Link to="/cart" className="cart-icon">
             <img src={cart} className="logo" alt="cart" />
           </Link>
-          <div className="burger" onClick={toggleMenu}>
+          <div className="burger" ref={burgerRef} onClick={toggleMenu}>
             <div className={`line ${menuOpen ? 'open' : ''}`}></div>
             <div className={`line ${menuOpen ? 'open' : ''}`}></div>
             <div className={`line ${menuOpen ? 'open' : ''}`}></div>
