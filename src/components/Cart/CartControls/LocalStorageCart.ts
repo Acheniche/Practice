@@ -46,3 +46,9 @@ export const getLocalStorageCartItems = (): CartItem[] => {
 export const clearLocalStorageCart = () => {
   localStorage.removeItem(CART_KEY)
 }
+
+export const removeAllItemsFromLocalStorageCart = (itemId: number) => {
+  let cart = getCartFromLocalStorage()
+  cart = cart.filter((item) => item.id !== itemId)
+  saveCartToLocalStorage(cart)
+}

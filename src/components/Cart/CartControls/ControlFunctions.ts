@@ -7,9 +7,11 @@ import {
   addItemToLocalStorageCart,
   clearLocalStorageCart,
   getLocalStorageCartItems,
+  removeAllItemsFromLocalStorageCart,
   removeItemFromLocalStorageCart,
 } from './localStorageCart'
-import { removeItemFromFirestoreCart } from './removeItemFronCart'
+import { removeAllItemsFromFirestoreCart } from './removeAllItemsFromCart'
+import { removeItemFromFirestoreCart } from './removeItemFromCart'
 
 export const addItemToCart = async (item: CartItem) => {
   if (auth.currentUser) {
@@ -40,5 +42,13 @@ export const clearCart = async () => {
     await clearFirestoreCart()
   } else {
     clearLocalStorageCart()
+  }
+}
+
+export const removeAllItemsFromCart = async (itemId: number) => {
+  if (auth.currentUser) {
+    await removeAllItemsFromFirestoreCart(itemId)
+  } else {
+    removeAllItemsFromLocalStorageCart(itemId)
   }
 }

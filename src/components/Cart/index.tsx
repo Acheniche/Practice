@@ -4,11 +4,13 @@ import { auth } from '../../utils/firebase'
 import { getCartItems, clearCart } from './CartControls/controlFunctions'
 import CartItems from '../CartItem'
 import './index.css'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const [items, setItems] = useState<CartItem[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [thankYouMessage, setThankYouMessage] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -19,7 +21,9 @@ const Cart = () => {
   }, [auth.currentUser])
 
   const handleShopNow = () => {
-    setIsModalOpen(true)
+    if (items.length > 0) {
+      setIsModalOpen(true)
+    }
   }
 
   const handleConfirmPurchase = async () => {
@@ -35,20 +39,28 @@ const Cart = () => {
   )
 
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className="Cart">
       {thankYouMessage ? (
         <p>{thankYouMessage}</p>
       ) : (
         <>
           <CartItems items={items} setItems={setItems} />
-          <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-          <button onClick={handleShopNow}>Shop now</button>
+          {items.length === 0 ? (
+            <>
+              <h1>Cart is empty(</h1>
+              <button onClick={() => navigate(`/shop`)}>Go to shop</button>
+            </>
+          ) : (
+            <>
+              <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
+              <button onClick={handleShopNow}>Shop now</button>
+            </>
+          )}
           {isModalOpen && (
             <div className="modal">
               <div className="modal-content">
                 <h2>Confirm Purchase</h2>
-                <p>Total Price: ${totalPrice.toFixed(2)}</p>
+                <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
                 <ul>
                   {items.map((item) => (
                     <li key={item.id}>
