@@ -7,12 +7,13 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import { auth, logInWithEmailAndPassword } from '../../utils/firebase'
-import { ENschemaLogin } from './LoginShema'
+import { ENschemaLogin } from './validation'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [user, loading] = useAuthState(auth)
+  const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
 
   const initialSchema = ENschemaLogin
@@ -37,6 +38,11 @@ function Login() {
 
   const handleClearEmail = () => setEmail('')
   const handleClearPassword = () => setPassword('')
+
+  const handleLogin = async () => {
+    setError(null)
+    await logInWithEmailAndPassword(email, password, setError)
+  }
 
   return (
     <div>
@@ -78,11 +84,12 @@ function Login() {
           </div>
           <p className="error-message">{errors.Password?.message}</p>
         </div>
+        {error && <p className="error-message">{error}</p>}
         <input
           type="submit"
           disabled={!isValid}
           className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
+          onClick={handleLogin}
           value={'Login'}
         />
       </div>

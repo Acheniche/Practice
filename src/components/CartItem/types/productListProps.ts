@@ -1,4 +1,4 @@
-import { CartItem } from './cartItem'
+import { CartItem } from '../../types/cartItem'
 
 export interface ProductListProps {
   items: CartItem[]

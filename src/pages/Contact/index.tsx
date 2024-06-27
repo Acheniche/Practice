@@ -4,8 +4,8 @@ import emailjs from '@emailjs/browser'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { FormInput } from '../../types/formInput'
-import { ENschemaContact } from './ContactShema'
+import { FormInput } from './types/formInput'
+import { ENschemaContact } from './validation'
 
 const Contact = () => {
   const {

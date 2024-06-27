@@ -9,7 +9,6 @@ import logo from '../../assets/Modsen SHOPPE.svg'
 import cart from '../../assets/shopping-cart 1.svg'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { themeSlice } from '../../store/reducers/themeSlice'
-import { userSlice } from '../../store/reducers/userSlice'
 import { auth, logout } from '../../utils/firebase'
 
 const Header = () => {
@@ -17,7 +16,6 @@ const Header = () => {
   const { isOn } = useAppSelector((state) => state.themeReducer)
   const dispatch = useAppDispatch()
   const { changeTheme } = themeSlice.actions
-  const { setUser } = userSlice.actions
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -33,7 +31,6 @@ const Header = () => {
 
   const handleLogout = () => {
     logout()
-    dispatch(setUser(null))
     navigate('/')
   }
 
