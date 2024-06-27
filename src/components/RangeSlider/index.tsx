@@ -1,14 +1,19 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { RangeSliderProps } from '../../types/filter'
 import './index.css'
 
-const RangeSlider: React.FC<RangeSliderProps> = ({
+interface Props extends RangeSliderProps {
+  onFilter: (minPrice: number, maxPrice: number) => void
+}
+
+const RangeSlider: React.FC<Props> = ({
   min,
   max,
   step,
   initialMinValue,
   initialMaxValue,
   onChange,
+  onFilter,
 }) => {
   const [minValue, setMinValue] = useState<number>(initialMinValue)
   const [maxValue, setMaxValue] = useState<number>(initialMaxValue)
@@ -25,8 +30,9 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     if (dragging) {
       onChange(minValue, maxValue)
       setDragging(null)
+      onFilter(minValue, maxValue)
     }
-  }, [dragging, minValue, maxValue, onChange])
+  }, [dragging, minValue, maxValue, onChange, onFilter])
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -58,7 +64,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
     [dragging, min, max, step, minValue, maxValue]
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (dragging) {
       document.addEventListener('mousemove', handleMouseMove)
       document.addEventListener('mouseup', handleMouseUp)
@@ -71,6 +77,10 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
       document.removeEventListener('mouseup', handleMouseUp)
     }
   }, [dragging, handleMouseMove, handleMouseUp])
+
+  const handleFilterClick = () => {
+    onFilter(minValue, maxValue)
+  }
 
   return (
     <div className="range-slider">
@@ -93,9 +103,14 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           }}
         />
       </div>
-      <p>
-        Price: ${minValue}-{maxValue}
-      </p>
+      <div className="price-filter-container">
+        <p className="price-text">
+          Price: ${minValue} - ${maxValue}
+        </p>
+        <button className="filter-button" onClick={handleFilterClick}>
+          Filter
+        </button>
+      </div>
     </div>
   )
 }

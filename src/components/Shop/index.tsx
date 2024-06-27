@@ -1,13 +1,14 @@
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import './index.css'
-import RangeSlider from '../RangeSlider'
-import { useEffect, useState } from 'react'
 import { AppDispatch, RootState } from '../../store/store'
+import { fetchProducts } from '../../store/reducers/actionCreators'
+import RangeSlider from '../RangeSlider'
+import './index.css'
 import SearchIcon from '../../assets/Icon color (1).svg'
 import ProductList from '../ProductList'
-import { fetchProducts } from '../../store/reducers/actionCreators'
+import FilterIcon from '../../assets/filter (1) 2.svg'
 
-const Shop: React.FC = () => {
+const Shop = () => {
   const dispatch = useDispatch<AppDispatch>()
   const products = useSelector(
     (state: RootState) => state.productsReducer.products
@@ -20,10 +21,27 @@ const Shop: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [categories, setCategories] = useState<string[]>([])
   const [filteredProducts, setFilteredProducts] = useState(products)
+  const [filtersOpen, setFiltersOpen] = useState(false)
 
   const handleSliderChange = (newMinValue: number, newMaxValue: number) => {
     setMinPrice(newMinValue)
     setMaxPrice(newMaxValue)
+  }
+
+  const filterProducts = (minPrice: number, maxPrice: number) => {
+    dispatch(
+      fetchProducts({
+        category: selectedCategory,
+        sort: sortBy,
+        minPrice,
+        maxPrice,
+        searchQuery,
+      })
+    )
+  }
+
+  const handleFilter = () => {
+    filterProducts(minPrice, maxPrice)
   }
 
   useEffect(() => {
@@ -52,23 +70,29 @@ const Shop: React.FC = () => {
     setFilteredProducts(products)
   }, [products])
 
-  const handleFilter = () => {
-    dispatch(
-      fetchProducts({
-        category: selectedCategory,
-        sort: sortBy,
-        minPrice,
-        maxPrice,
-        searchQuery,
-      })
-    )
-  }
+  useEffect(() => {
+    if (filtersOpen) {
+      document.body.classList.add('filters-open')
+    } else {
+      document.body.classList.remove('filters-open')
+    }
+  }, [filtersOpen])
 
   return (
     <>
-      <h1>Shop</h1>
+      <h1>Shop The Latest</h1>
       <div className="ShopComponent">
-        <div className="Filters">
+        <button className="filters-button" onClick={() => setFiltersOpen(true)}>
+          <img src={FilterIcon} alt="Filter" />
+          Filters
+        </button>
+        <div className={`Filters ${filtersOpen ? 'open' : ''}`}>
+          <button
+            className="close-filters"
+            onClick={() => setFiltersOpen(false)}
+          >
+            &times;
+          </button>
           <div className="search-container">
             <input
               type="text"
@@ -98,16 +122,16 @@ const Shop: React.FC = () => {
               <option value="desc">Price (High to Low)</option>
             </select>
           </div>
-          <RangeSlider
-            min={0}
-            max={1000}
-            step={1}
-            initialMinValue={minPrice}
-            initialMaxValue={maxPrice}
-            onChange={handleSliderChange}
-          />
-          <div>
-            <button onClick={handleFilter}>Filter</button>
+          <div className="price-filter-container">
+            <RangeSlider
+              min={0}
+              max={1000}
+              step={1}
+              initialMinValue={minPrice}
+              initialMaxValue={maxPrice}
+              onChange={handleSliderChange}
+              onFilter={filterProducts}
+            />
           </div>
         </div>
         <ProductList products={filteredProducts} isLoading={false} error={''} />
