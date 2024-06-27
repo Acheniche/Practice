@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { themeSlice } from '../../store/reducers/themeSlice'
 import './index.css'
@@ -10,7 +10,7 @@ import search from '../../assets/Icon color.svg'
 import cart from '../../assets/shopping-cart 1.svg'
 import { userSlice } from '../../store/reducers/userSlice'
 
-const Header: React.FC = () => {
+const Header = () => {
   const [user] = useAuthState(auth)
   const { isOn } = useAppSelector((state) => state.themeReducer)
   const dispatch = useAppDispatch()

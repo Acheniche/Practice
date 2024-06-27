@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { CartItem } from '../../types/cartItem'
 import { auth } from '../../utils/firebase'
 import { getCartItems, clearCart } from './CartControls/controlFunctions'
-import CartItems from '../CartItem'
+import CartItems from '../../components/CartItem'
 import './index.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -41,7 +41,7 @@ const Cart = () => {
   return (
     <div className="Cart">
       {thankYouMessage ? (
-        <p>{thankYouMessage}</p>
+        <h1>{thankYouMessage}</h1>
       ) : (
         <>
           <CartItems items={items} setItems={setItems} />

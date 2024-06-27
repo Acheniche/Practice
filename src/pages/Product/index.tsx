@@ -7,7 +7,7 @@ import {
   fetchSimilarProducts,
 } from '../../store/reducers/actionCreators'
 import './index.css'
-import ProductList from '../ProductList'
+import ProductList from '../../components/ProductList'
 
 const Product = () => {
   const { id } = useParams<{ id: string }>()
@@ -48,7 +48,13 @@ const Product = () => {
       )}
       <h2>Similar Products</h2>
       <div className="similar-products">
-        <ProductList products={similarProducts} isLoading={true} error={''} />
+        <ProductList
+          products={similarProducts}
+          isLoading={true}
+          error={''}
+          product={null}
+          similarProducts={[]}
+        />
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import {
   getCartItems,
   removeItemFromCart,
   removeAllItemsFromCart,
-} from '../Cart/CartControls/controlFunctions'
+} from '../../pages/Cart/CartControls/controlFunctions'
 import { CartItem } from '../../types/cartItem'
 
 const CartItems = ({ items, setItems }: ProductListProps) => {

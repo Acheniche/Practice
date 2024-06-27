@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store/store'
 import { fetchProducts } from '../../store/reducers/actionCreators'
-import RangeSlider from '../RangeSlider'
+import RangeSlider from '../../components/RangeSlider'
 import './index.css'
 import SearchIcon from '../../assets/Icon color (1).svg'
-import ProductList from '../ProductList'
+import ProductList from '../../components/ProductList'
 import FilterIcon from '../../assets/filter (1) 2.svg'
 
 const Shop = () => {
@@ -134,7 +134,13 @@ const Shop = () => {
             />
           </div>
         </div>
-        <ProductList products={filteredProducts} isLoading={false} error={''} />
+        <ProductList
+          products={filteredProducts}
+          isLoading={false}
+          error={''}
+          product={null}
+          similarProducts={[]}
+        />
       </div>
     </>
   )
