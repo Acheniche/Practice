@@ -1,4 +1,5 @@
 import { doc, updateDoc } from 'firebase/firestore'
+
 import { auth, db } from '../../../utils/firebase'
 
 export const clearFirestoreCart = async () => {

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { Product } from '../../types/product'
+
 import { FetchProductsParams } from '../../types/fetchProductsParams'
+import { Product } from '../../types/product'
 
 const baseUrl = 'https://fakestoreapi.com'
 

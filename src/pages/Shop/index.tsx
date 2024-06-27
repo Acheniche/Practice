@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../store/store'
-import { fetchProducts } from '../../store/reducers/actionCreators'
-import RangeSlider from '../../components/RangeSlider'
 import './index.css'
+
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import FilterIcon from '../../assets/filter (1) 2.svg'
 import SearchIcon from '../../assets/Icon color (1).svg'
 import ProductList from '../../components/ProductList'
-import FilterIcon from '../../assets/filter (1) 2.svg'
+import RangeSlider from '../../components/RangeSlider'
+import { fetchProducts } from '../../store/reducers/actionCreators'
+import { AppDispatch, RootState } from '../../store/store'
 
 const Shop = () => {
   const dispatch = useDispatch<AppDispatch>()

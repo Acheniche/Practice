@@ -1,11 +1,11 @@
-import { ProductListProps } from '../../types/productListProps'
 import {
   addItemToCart,
   getCartItems,
-  removeItemFromCart,
   removeAllItemsFromCart,
+  removeItemFromCart,
 } from '../../pages/Cart/CartControls/controlFunctions'
 import { CartItem } from '../../types/cartItem'
+import { ProductListProps } from '../../types/productListProps'
 
 const CartItems = ({ items, setItems }: ProductListProps) => {
   const handleRemoveItem = async (itemId: number) => {

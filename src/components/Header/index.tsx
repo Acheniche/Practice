@@ -1,14 +1,16 @@
-import { useEffect, useState, useRef } from 'react'
+import './index.css'
+
+import { useEffect, useRef, useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { Link, useNavigate } from 'react-router-dom'
+
+import search from '../../assets/Icon color.svg'
+import logo from '../../assets/Modsen SHOPPE.svg'
+import cart from '../../assets/shopping-cart 1.svg'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { themeSlice } from '../../store/reducers/themeSlice'
-import './index.css'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, logout } from '../../utils/firebase'
-import logo from '../../assets/Modsen SHOPPE.svg'
-import search from '../../assets/Icon color.svg'
-import cart from '../../assets/shopping-cart 1.svg'
 import { userSlice } from '../../store/reducers/userSlice'
+import { auth, logout } from '../../utils/firebase'
 
 const Header = () => {
   const [user] = useAuthState(auth)

@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import './index.css'
+
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import CartItems from '../../components/CartItem'
 import { CartItem } from '../../types/cartItem'
 import { auth } from '../../utils/firebase'
-import { getCartItems, clearCart } from './CartControls/controlFunctions'
-import CartItems from '../../components/CartItem'
-import './index.css'
-import { useNavigate } from 'react-router-dom'
+import { clearCart, getCartItems } from './CartControls/controlFunctions'
 
 const Cart = () => {
   const [items, setItems] = useState<CartItem[]>([])

@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
-import { auth, logInWithEmailAndPassword } from '../../utils/firebase'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { ENschemaLogin } from './LoginShema'
 import './index.css'
+
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useEffect, useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+
+import { auth, logInWithEmailAndPassword } from '../../utils/firebase'
+import { ENschemaLogin } from './LoginShema'
 
 function Login() {
   const [email, setEmail] = useState('')

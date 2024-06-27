@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
-import { ProductsState } from '../../types/productsState'
 import './index.css'
+
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { ProductsState } from '../../types/productsState'
 
 const Slider = ({ products }: ProductsState) => {
   const navigate = useNavigate()

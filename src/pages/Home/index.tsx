@@ -1,10 +1,12 @@
-import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import './index.css'
-import { getAllProducts } from '../../store/reducers/actionCreators'
-import ProductList from '../../components/ProductList/index'
+
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
+import ProductList from '../../components/ProductList/index'
 import Slider from '../../components/Slider'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { getAllProducts } from '../../store/reducers/actionCreators'
 
 function Home() {
   const dispatch = useAppDispatch()

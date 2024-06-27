@@ -1,11 +1,11 @@
 import { initializeApp } from 'firebase/app'
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-import { getFirestore, collection, addDoc } from 'firebase/firestore'
+import { addDoc, collection, getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDjRR51p2wa-gFLIzVnPMU0E-S9iP9h7UU',
@@ -62,6 +62,6 @@ export {
   auth,
   db,
   logInWithEmailAndPassword,
-  registerWithEmailAndPassword,
   logout,
+  registerWithEmailAndPassword,
 }

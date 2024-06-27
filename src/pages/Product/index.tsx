@@ -1,13 +1,15 @@
+import './index.css'
+
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { AppDispatch, RootState } from '../../store/store'
+
+import ProductList from '../../components/ProductList'
 import {
   fetchProductById,
   fetchSimilarProducts,
 } from '../../store/reducers/actionCreators'
-import './index.css'
-import ProductList from '../../components/ProductList'
+import { AppDispatch, RootState } from '../../store/store'
 
 const Product = () => {
   const { id } = useParams<{ id: string }>()

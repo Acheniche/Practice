@@ -1,11 +1,13 @@
+import './index.css'
+
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { Link, useNavigate } from 'react-router-dom'
-import { auth, registerWithEmailAndPassword } from '../../utils/firebase'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { auth, registerWithEmailAndPassword } from '../../utils/firebase'
 import { ENschema } from './RegistrationShema'
-import './index.css'
 
 function Registration() {
   const [email, setEmail] = useState('')
