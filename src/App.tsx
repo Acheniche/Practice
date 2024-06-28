@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
+import Footer from './components/Footer'
 import Header from './components/Header'
 import Cart from './pages/Cart'
 import Contact from './pages/Contact'
@@ -25,6 +26,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </>
     </BrowserRouter>
   )
