@@ -3,6 +3,7 @@ import './index.css'
 import emailjs from '@emailjs/browser'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import logo1 from '../../assets/Icon color (2).svg'
 import logo2 from '../../assets/Icon color (3).svg'
@@ -42,9 +43,15 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__top">
         <div className="left-section">
-          <a href="#">CONTACT</a>
-          <a href="#">TERMS OF SERVICES</a>
-          <a href="#">SHIPPING AND RETURNS</a>
+          <a>
+            <Link to="/contact">CONTACT</Link>
+          </a>
+          <a>
+            <Link to="/">TERMS OF SERVICES</Link>
+          </a>
+          <a>
+            <Link to="/">SHIPPING AND RETURNS</Link>
+          </a>
         </div>
         <div className="right-section">
           <form onSubmit={handleSubmit(onSubmit)} className="footer-form">
@@ -67,17 +74,25 @@ const Footer = () => {
           © 2023 Shelly. Terms of use and privacy policy.
         </div>
         <div className="social-icons">
-          <a href="#">
-            <img src={logo1} alt="LinkedIn" />
+          <a>
+            <Link to="/">
+              <img src={logo1} alt="LinkedIn" />
+            </Link>
           </a>
-          <a href="#">
-            <img src={logo5} alt="Facebook" />
+          <a>
+            <Link to="/">
+              <img src={logo5} alt="Facebook" />
+            </Link>
           </a>
-          <a href="#">
-            <img src={logo3} alt="Instagram" />
+          <a>
+            <Link to="/">
+              <img src={logo3} alt="Instagram" />
+            </Link>
           </a>
-          <a href="#">
-            <img src={logo2} alt="Twitter" />
+          <a>
+            <Link to="/">
+              <img src={logo2} alt="Twitter" />
+            </Link>
           </a>
         </div>
       </div>
