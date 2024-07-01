@@ -23,10 +23,11 @@ const Footer = () => {
   })
 
   const onSubmit: SubmitHandler<FooterFormInput> = (data) => {
+    console.log(data)
     emailjs
       .send(
         'service_hnhnuci',
-        'template_rm5gw5m',
+        'template_vedvmbb',
         data as unknown as Record<string, unknown>,
         'aw42ftbiphnnYM1Py'
       )
@@ -57,7 +58,7 @@ const Footer = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="footer-form">
             <div className="input-container">
               <input
-                {...register('email')}
+                {...register('emailFooter')}
                 placeholder="Give an email, get the newsletter."
                 className="contact__textBox"
               />
@@ -65,7 +66,7 @@ const Footer = () => {
                 →
               </button>
             </div>
-            <p className="error-message">{errors.email?.message}</p>
+            <p className="error-message">{errors.emailFooter?.message}</p>
           </form>
         </div>
       </div>
