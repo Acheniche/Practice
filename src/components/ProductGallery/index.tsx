@@ -1,6 +1,6 @@
 import './index.css'
 
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface ProductGalleryProps {
   image: string
@@ -13,7 +13,12 @@ const ProductImageGallery = ({ image }: ProductGalleryProps) => {
 
   useEffect(() => {
     setSelectedImage(images[activeIndex])
-  }, [activeIndex])
+  }, [activeIndex, images])
+
+  useEffect(() => {
+    setSelectedImage(images[0])
+    setActiveIndex(0)
+  }, [images])
 
   const handleThumbnailClick = (index: number) => {
     setActiveIndex(index)
@@ -30,7 +35,7 @@ const ProductImageGallery = ({ image }: ProductGalleryProps) => {
           <img
             key={index}
             src={img}
-            className="imageThumbnail"
+            className={`imageThumbnail ${index === activeIndex ? 'active' : ''}`}
             onClick={() => handleThumbnailClick(index)}
             alt={`Thumbnail ${index + 1}`}
           />

@@ -15,6 +15,7 @@ import {
   fetchSimilarProducts,
 } from '../../store/reducers/actionCreators'
 import { AppDispatch, RootState } from '../../store/store'
+import { addItemToCart } from '../Cart/CartControls/controlFunctions'
 
 const Product = () => {
   const { id } = useParams<{ id: string }>()
@@ -61,6 +62,22 @@ const Product = () => {
           <div className="product-info">
             <h1>{product.title}</h1>
             <h2 className="price">${product.price}</h2>
+            <button
+              className="product-add-to-cart"
+              onClick={() =>
+                addItemToCart({
+                  id: product.id,
+                  name: product.title,
+                  description: product.description,
+                  imageUrl: product.image,
+                  price: product.price,
+                  category: product.category,
+                  quantity: 1,
+                })
+              }
+            >
+              Add to Cart
+            </button>
             <div
               className={`description ${showFullDescription ? 'show' : 'hide'}`}
             >

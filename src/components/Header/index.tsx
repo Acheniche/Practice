@@ -8,7 +8,9 @@ import search from '../../assets/Icon color.svg'
 import logo from '../../assets/Modsen SHOPPE.svg'
 import cart from '../../assets/shopping-cart 1.svg'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { getCartItems } from '../../pages/Cart/CartControls/controlFunctions'
 import { themeSlice } from '../../store/reducers/themeSlice'
+import { CartItem } from '../../types/cartItem'
 import { auth, logout } from '../../utils/firebase'
 
 const Header = () => {
@@ -20,6 +22,28 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const burgerRef = useRef<HTMLDivElement>(null)
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
+
+  const fetchCartItems = async () => {
+    const items = await getCartItems()
+    setCartItems(items)
+  }
+
+  useEffect(() => {
+    fetchCartItems()
+  }, [])
+
+  useEffect(() => {
+    const handleClick = () => {
+      fetchCartItems()
+    }
+
+    document.addEventListener('click', handleClick)
+
+    return () => {
+      document.removeEventListener('click', handleClick)
+    }
+  }, [])
 
   const handleChange = () => {
     dispatch(changeTheme())
@@ -60,6 +84,8 @@ const Header = () => {
     }
   }, [menuOpen])
 
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
+
   return (
     <header>
       <div className="logo">
@@ -85,7 +111,14 @@ const Header = () => {
             <img src={search} className="logo" alt="search" />
           </Link>
           <Link to="/cart">
-            <img src={cart} className="logo" alt="cart" />
+            {totalItems > 0 ? (
+              <div className="cart-with-items">
+                <img src={cart} className="logo" alt="cart" />
+                <span className="item-count">{totalItems}</span>
+              </div>
+            ) : (
+              <img src={cart} className="logo" alt="cart" />
+            )}
           </Link>
           {!user ? <Link to="/login">Login</Link> : null}
           {!user ? <Link to="/registration">Registration</Link> : null}
@@ -93,7 +126,14 @@ const Header = () => {
         </nav>
         <div className="icons">
           <Link to="/cart" className="cart-icon">
-            <img src={cart} className="logo" alt="cart" />
+            {totalItems > 0 ? (
+              <div className="cart-with-items">
+                <img src={cart} className="logo" alt="cart" />
+                <span className="item-count">{totalItems}</span>
+              </div>
+            ) : (
+              <img src={cart} className="logo" alt="cart" />
+            )}
           </Link>
           <div className="burger" ref={burgerRef} onClick={toggleMenu}>
             <div className={`line ${menuOpen ? 'open' : ''}`}></div>

@@ -164,3 +164,23 @@
 .descriptionContainer.open .text {
   max-height: 1000px;
 }
+
+.product-add-to-cart {
+  width: 187px;
+  height: 53px;
+  border-radius: 4px;
+  margin: 0 auto;
+  font-family: DM Sans;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20.83px;
+  text-align: center;
+  background-color: white;
+}
+
+.product-add-to-cart:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
