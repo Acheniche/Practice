@@ -50,12 +50,16 @@ const Cart = () => {
           {items.length === 0 ? (
             <>
               <h1>Cart is empty(</h1>
-              <button onClick={() => navigate(`/shop`)}>Go to shop</button>
+              <button onClick={() => navigate(`/shop`)} data-cy="go-to-shop">
+                Go to shop
+              </button>
             </>
           ) : (
             <>
               <h2>Total Price: ${totalPrice.toFixed(2)}</h2>
-              <button onClick={handleShopNow}>Shop now</button>
+              <button onClick={handleShopNow} data-cy="shop-now">
+                Shop now
+              </button>
             </>
           )}
           {isModalOpen && (
@@ -70,8 +74,18 @@ const Cart = () => {
                     </li>
                   ))}
                 </ul>
-                <button onClick={handleConfirmPurchase}>Confirm</button>
-                <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+                <button
+                  onClick={handleConfirmPurchase}
+                  data-cy="confirm-purchase"
+                >
+                  Confirm
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  data-cy="cancel-purchase"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           )}
