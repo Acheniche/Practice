@@ -113,11 +113,11 @@ const Header = () => {
           <Link to="/cart">
             {totalItems > 0 ? (
               <div className="cart-with-items">
-                <img src={cart} className="logo" alt="cart" />
+                <img src={cart} className="logo" alt="cart" id="CartImg" />
                 <span className="item-count">{totalItems}</span>
               </div>
             ) : (
-              <img src={cart} className="logo" alt="cart" />
+              <img src={cart} className="logo" alt="cart" id="CartImg" />
             )}
           </Link>
           {!user ? <Link to="/login">Login</Link> : null}
