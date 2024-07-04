@@ -24,3 +24,7 @@
   line-height: 26px;
   text-align: left;
 }
+
+.view-all-container a {
+  text-decoration: none;
+}

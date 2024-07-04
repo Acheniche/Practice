@@ -27,7 +27,6 @@ const Footer = () => {
   const [isError, setIsError] = useState<boolean>(false)
 
   const onSubmit: SubmitHandler<FooterFormInput> = (data) => {
-    console.log(data)
     emailjs
       .send(
         'service_hnhnuci',
@@ -39,10 +38,12 @@ const Footer = () => {
         () => {
           setFeedbackMessage('Message sent successfully!')
           setIsError(false)
+          setTimeout(() => setFeedbackMessage(null), 3000)
         },
         () => {
           setFeedbackMessage('Failed to send the message. Please try again.')
           setIsError(true)
+          setTimeout(() => setFeedbackMessage(null), 3000)
         }
       )
   }
