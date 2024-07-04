@@ -9,7 +9,7 @@
 }
 
 .product-card {
-  background: #fff;
+  background-color: var(--background-color);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -101,7 +101,7 @@
   font-weight: 400;
   line-height: 26px;
   text-align: left;
-  color: #000;
+  color: var(--color-text);
   margin: 23px 0 16px 0;
 }
 

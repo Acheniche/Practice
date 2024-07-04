@@ -9,15 +9,16 @@ import logo from '../../assets/Modsen SHOPPE.svg'
 import cart from '../../assets/shopping-cart 1.svg'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { getCartItems } from '../../pages/Cart/CartControls/controlFunctions'
-import { themeSlice } from '../../store/reducers/themeSlice'
+import { toggleTheme } from '../../store/reducers/themeSlice'
 import { CartItem } from '../../types/cartItem'
 import { auth, logout } from '../../utils/firebase'
 
 const Header = () => {
   const [user] = useAuthState(auth)
-  const { isOn } = useAppSelector((state) => state.themeReducer)
   const dispatch = useAppDispatch()
-  const { changeTheme } = themeSlice.actions
+
+  const theme = useAppSelector((state) => state.themeReducer)
+  const isOn = theme.theme === 'dark'
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -46,12 +47,8 @@ const Header = () => {
   }, [])
 
   const handleChange = () => {
-    dispatch(changeTheme())
+    dispatch(toggleTheme())
   }
-
-  useEffect(() => {
-    document.body.style.backgroundColor = isOn ? '#707070' : '#ffffff'
-  }, [isOn])
 
   const handleLogout = () => {
     logout()

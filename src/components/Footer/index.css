@@ -1,5 +1,5 @@
 .footer {
-  color: #000;
+  color: var(--text-color);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
 
 .left-section a {
   margin-right: 40px;
-  color: #000;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -48,8 +48,8 @@
   border: none;
   border-bottom: 2px solid #ccc;
   outline: none;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--background-color);
+  color: var(--text-color);
   box-sizing: border-box;
 }
 
@@ -60,7 +60,7 @@
   transform: translateY(-50%);
   border: none;
   background-color: transparent;
-  color: #000;
+  color: var(--text-color);
   font-size: 24px;
   cursor: pointer;
   padding: 0;

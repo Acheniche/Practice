@@ -66,7 +66,7 @@ header {
 nav a {
   margin: 0 10px;
   text-decoration: none;
-  color: #000;
+  color: var(--text-color);
   align-items: center;
   transition: color 0.3s;
 }
@@ -120,7 +120,7 @@ a.logo {
   top: 40px;
   left: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--background-color);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   padding: 20px;
   box-sizing: border-box;
@@ -186,9 +186,9 @@ a.logo {
   position: absolute;
   top: -10px;
   right: -10px;
-  background-color: #fff;
-  color: #000;
-  border: #000 solid 1px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: var(--text-color) solid 1px;
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 10px;

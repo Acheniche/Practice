@@ -18,14 +18,14 @@
   transform: translate(-50%, -50%);
   width: 2px;
   height: 10px;
-  background: rgba(0, 0, 0, 1);
+  background-color: var(--button-background);
   cursor: pointer;
 }
 
 .range-highlight {
   position: absolute;
   height: 2px;
-  background: rgba(0, 0, 0, 1);
+  background-color: var(--button-background);
 }
 
 .price-filter-container {
@@ -45,7 +45,7 @@
 
 .filter-button {
   color: rgba(161, 138, 104, 1);
-  background-color: #fff;
+  background-color: transparent;
   border: none;
   border-radius: 4px;
   cursor: pointer;

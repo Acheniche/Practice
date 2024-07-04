@@ -1,7 +1,11 @@
+import './global.css'
+
+import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Footer from './components/Footer'
 import Header from './components/Header'
+import { useAppSelector } from './hooks/redux'
 import Cart from './pages/Cart'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
@@ -12,6 +16,12 @@ import Registration from './pages/Registration'
 import Shop from './pages/Shop'
 
 function App() {
+  const theme = useAppSelector((state) => state.themeReducer)
+
+  useEffect(() => {
+    document.body.className = theme.theme
+  }, [theme])
+
   return (
     <BrowserRouter>
       <>

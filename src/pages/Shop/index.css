@@ -13,7 +13,6 @@ body.filters-open {
   flex-direction: column;
   width: 25%;
   padding-right: 20px;
-  border-right: 1px solid #e0e0e0;
 }
 
 .search-container {
@@ -32,6 +31,8 @@ body.filters-open {
   border-bottom: 1px solid #e0e0e0;
   outline: none;
   box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--color-text);
 }
 
 .search-container button {
@@ -57,7 +58,8 @@ body.filters-open {
   border: none;
   border-bottom: 2px solid #ccc;
   outline: none;
-  background-color: transparent;
+  background-color: var(--background-color);
+  color: var(--color-text);
 }
 
 .price-filter-container {
@@ -96,7 +98,7 @@ body.filters-open {
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #fff;
+    background-color: var(--background-color);
     color: rgba(161, 138, 104, 1);
     border: none;
     cursor: pointer;
@@ -112,7 +114,7 @@ body.filters-open {
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
-    background-color: #fff;
+    background-color: var(--background-color);
     z-index: 1000;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

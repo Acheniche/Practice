@@ -29,6 +29,7 @@
   border-bottom: 2px solid #ccc;
   outline: none;
   background-color: transparent;
+  color: var(--text-color);
 }
 
 .error-message {
