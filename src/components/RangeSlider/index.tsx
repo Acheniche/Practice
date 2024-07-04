@@ -2,7 +2,7 @@ import './index.css'
 
 import React, { useCallback, useEffect, useState } from 'react'
 
-import { RangeSliderProps } from './types/filter'
+import { RangeSliderProps } from './types'
 
 interface Props extends RangeSliderProps {
   onFilter: (minPrice: number, maxPrice: number) => void

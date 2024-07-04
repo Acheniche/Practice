@@ -126,7 +126,7 @@ const Header = () => {
         </nav>
         <div className="icons">
           <Link to="/cart" className="cart-icon">
-            {totalItems > 0 ? (
+            {totalItems ? (
               <div className="cart-with-items">
                 <img src={cart} className="logo" alt="cart" />
                 <span className="item-count">{totalItems}</span>

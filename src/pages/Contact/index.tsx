@@ -2,9 +2,10 @@ import './index.css'
 
 import emailjs from '@emailjs/browser'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { FormInput } from './types/formInput'
+import { FormInput } from './types'
 import { ENschemaContact } from './validation'
 
 const Contact = () => {
@@ -17,6 +18,9 @@ const Contact = () => {
     resolver: yupResolver(ENschemaContact),
   })
 
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null)
+  const [isError, setIsError] = useState<boolean>(false)
+
   const onSubmit: SubmitHandler<FormInput> = (data) => {
     emailjs
       .send(
@@ -26,11 +30,13 @@ const Contact = () => {
         'aw42ftbiphnnYM1Py'
       )
       .then(
-        (result) => {
-          console.log(result.text)
+        () => {
+          setFeedbackMessage('Message sent successfully!')
+          setIsError(false)
         },
-        (error) => {
-          console.log(error.text)
+        () => {
+          setFeedbackMessage('Failed to send the message. Please try again.')
+          setIsError(true)
         }
       )
   }
@@ -95,6 +101,11 @@ const Contact = () => {
           className="contact__btn"
           value="Send"
         />
+        {feedbackMessage && (
+          <p className={`feedback-message ${isError ? 'error' : 'success'}`}>
+            {feedbackMessage}
+          </p>
+        )}
       </form>
     </div>
   )

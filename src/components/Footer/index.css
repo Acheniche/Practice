@@ -68,6 +68,20 @@
   text-align: left;
 }
 
+.feedback-message {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.feedback-message.success {
+  color: green;
+}
+
+.feedback-message.error {
+  color: red;
+}
+
 .footer__bottom {
   display: flex;
   justify-content: space-between;

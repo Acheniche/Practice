@@ -2,6 +2,7 @@ import './index.css'
 
 import emailjs from '@emailjs/browser'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
@@ -9,7 +10,7 @@ import logo1 from '../../assets/Icon color (2).svg'
 import logo2 from '../../assets/Icon color (3).svg'
 import logo3 from '../../assets/Icon color (4).svg'
 import logo5 from '../../assets/Icon color (6).svg'
-import { FooterFormInput } from './types/footerFormInput'
+import { FooterFormInput } from './types'
 import { ENschemaFooter } from './validation'
 
 const Footer = () => {
@@ -22,6 +23,9 @@ const Footer = () => {
     resolver: yupResolver(ENschemaFooter),
   })
 
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null)
+  const [isError, setIsError] = useState<boolean>(false)
+
   const onSubmit: SubmitHandler<FooterFormInput> = (data) => {
     console.log(data)
     emailjs
@@ -32,14 +36,17 @@ const Footer = () => {
         'aw42ftbiphnnYM1Py'
       )
       .then(
-        (result) => {
-          console.log(result.text)
+        () => {
+          setFeedbackMessage('Message sent successfully!')
+          setIsError(false)
         },
-        (error) => {
-          console.log(error.text)
+        () => {
+          setFeedbackMessage('Failed to send the message. Please try again.')
+          setIsError(true)
         }
       )
   }
+
   return (
     <footer className="footer">
       <div className="footer__top">
@@ -60,13 +67,20 @@ const Footer = () => {
               <input
                 {...register('emailFooter')}
                 placeholder="Give an email, get the newsletter."
-                className="contact__textBox"
+                className="footer__textBox"
               />
               <button type="submit" disabled={!isValid} className="footer__btn">
                 →
               </button>
             </div>
             <p className="error-message">{errors.emailFooter?.message}</p>
+            {feedbackMessage && (
+              <p
+                className={`feedback-message ${isError ? 'error' : 'success'}`}
+              >
+                {feedbackMessage}
+              </p>
+            )}
           </form>
         </div>
       </div>
