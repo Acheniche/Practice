@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.imageColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageThumbnail {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.imageThumbnail:hover {
+  opacity: 0.8;
+}
+
+.largeImage {
+  width: 540px;
+  height: 600px;
+  margin-left: 20px;
+}
+
+.mobileSlider {
+  display: none;
+}
+
+.indicatorContainer {
+  display: none;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.indicator {
+  width: 25%;
+  height: 4px;
+  background-color: gray;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: black;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .imageColumn {
+    display: none;
+  }
+
+  .largeImage {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+  }
+
+  .mobileSlider {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .slide {
+    min-width: 100%;
+  }
+
+  .indicatorContainer {
+    display: flex;
+  }
+}

@@ -1,0 +1,8 @@
+import * as yup from 'yup'
+
+export const ENschemaFooter = yup.object().shape({
+  emailFooter: yup
+    .string()
+    .email('Invalid email')
+    .required('Email is required'),
+})

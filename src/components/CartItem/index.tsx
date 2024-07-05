@@ -1,11 +1,11 @@
-import { ProductListProps } from '../../types/productListProps'
 import {
   addItemToCart,
   getCartItems,
-  removeItemFromCart,
   removeAllItemsFromCart,
-} from '../Cart/CartControls/controlFunctions'
+  removeItemFromCart,
+} from '../../pages/Cart/CartControls/controlFunctions'
 import { CartItem } from '../../types/cartItem'
+import { ProductListProps } from './types'
 
 const CartItems = ({ items, setItems }: ProductListProps) => {
   const handleRemoveItem = async (itemId: number) => {
@@ -34,12 +34,20 @@ const CartItems = ({ items, setItems }: ProductListProps) => {
             <img src={item.imageUrl} alt={item.name} />
             <h3>{item.name}</h3>
             <h2>${item.price.toFixed(2)}</h2>
-            <button onClick={() => handleRemoveItem(item.id)}>
+            <button
+              onClick={() => handleRemoveItem(item.id)}
+              data-cy="remove-one"
+            >
               Remove One
             </button>
             <h3>Quantity: {item.quantity}</h3>
-            <button onClick={() => handleAddItem(item)}>Add One</button>
-            <button onClick={() => handleRemoveAllItems(item.id)}>
+            <button onClick={() => handleAddItem(item)} data-cy="add-one">
+              Add One
+            </button>
+            <button
+              onClick={() => handleRemoveAllItems(item.id)}
+              data-cy="remove-all"
+            >
               Remove All
             </button>
           </div>

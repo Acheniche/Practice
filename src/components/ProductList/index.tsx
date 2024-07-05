@@ -1,12 +1,14 @@
-import { ProductState } from '../../store/reducers/getAllProductsSlice'
+import './index.css'
+
+import { useNavigate } from 'react-router-dom'
+
 import eye from '../../assets/eye-svgrepo-com 1.svg'
 import heart from '../../assets/heart-svgrepo-com 1.svg'
 import cart from '../../assets/shopping-cart 1 (1).svg'
-import { addItemToCart } from '../Cart/CartControls/controlFunctions'
-import './index.css'
-import { useNavigate } from 'react-router-dom'
+import { addItemToCart } from '../../pages/Cart/CartControls/controlFunctions'
+import { ProductsState } from '../../types/productsState'
 
-const ProductList = ({ products }: ProductState) => {
+const ProductList = ({ products }: ProductsState) => {
   const navigate = useNavigate()
 
   return (

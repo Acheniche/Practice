@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
-import { ProductState } from '../../store/reducers/getAllProductsSlice'
 import './index.css'
+
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Slider = ({ products }: ProductState) => {
+import { ProductsState } from '../../types/productsState'
+
+const Slider = ({ products }: ProductsState) => {
   const navigate = useNavigate()
   const [currentSlide, setCurrentSlide] = useState(0)
 

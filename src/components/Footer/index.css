@@ -1,0 +1,156 @@
+.footer {
+  color: var(--text-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 250px;
+}
+
+.footer__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.left-section a {
+  margin-right: 40px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.footer__textBox {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+}
+
+.footer__btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.feedback-message {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: left;
+  position: absolute;
+  bottom: -25px;
+}
+
+.feedback-message.success {
+  color: green;
+}
+
+.feedback-message.error {
+  color: red;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 30px;
+}
+
+.social-icons img {
+  width: 20px;
+  height: 20px;
+}
+
+.footer__copyright {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px;
+    align-items: flex-start;
+  }
+
+  .footer__top {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .left-section {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .left-section a {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .footer__bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .input-container {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .footer__links,
+  .footer-form {
+    margin: 10px 0;
+  }
+  .social-icons {
+    margin-bottom: 20px;
+  }
+}

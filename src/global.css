@@ -1,0 +1,23 @@
+.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --button-background: #f0f0f0;
+  --button-text-color: #000000;
+}
+
+.dark {
+  --background-color: #333333;
+  --text-color: #ffffff;
+  --button-background: #707070;
+  --button-text-color: #ffffff;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--button-background);
+  color: var(--button-text-color);
+}

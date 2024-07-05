@@ -1,15 +1,27 @@
+import './global.css'
+
+import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import Footer from './components/Footer'
 import Header from './components/Header'
-import Home from './components/Home'
-import Registration from './components/Registration'
-import Login from './components/Login'
-import Cart from './components/Cart'
-import Shop from './components/Shop'
-import Product from './components/Product'
-import NotFound from './components/NotFound'
-import Contact from './components/Contact'
+import { useAppSelector } from './hooks/redux'
+import Cart from './pages/Cart'
+import Contact from './pages/Contact'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import NotFound from './pages/NotFound'
+import Product from './pages/Product'
+import Registration from './pages/Registration'
+import Shop from './pages/Shop'
 
 function App() {
+  const theme = useAppSelector((state) => state.themeReducer)
+
+  useEffect(() => {
+    document.body.className = theme.theme
+  }, [theme])
+
   return (
     <BrowserRouter>
       <>
@@ -24,6 +36,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </>
     </BrowserRouter>
   )

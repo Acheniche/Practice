@@ -1,0 +1,30 @@
+.view-all-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.view-all-container h2 {
+  font-family: DM Sans;
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 43px;
+  text-align: left;
+}
+
+.view-all-container p {
+  color: rgba(161, 138, 104, 1);
+  border: 0;
+  background: rgba(255, 255, 255, 0);
+  cursor: pointer;
+  font-family: DM Sans;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: left;
+}
+
+.view-all-container a {
+  text-decoration: none;
+}

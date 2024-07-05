@@ -1,0 +1,154 @@
+body.filters-open {
+  overflow: hidden;
+}
+
+.ShopComponent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Filters {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding-right: 20px;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 80%;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px 40px 10px 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  outline: none;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--color-text);
+}
+
+.search-container button {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-container button img {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+}
+
+.Filters select {
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: var(--background-color);
+  color: var(--color-text);
+}
+
+.price-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.price-filter-container .RangeSlider {
+  flex: 1;
+}
+
+.ProductList {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ProductList .product {
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.filters-button,
+.close-filters {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .ShopComponent {
+    flex-direction: column;
+  }
+
+  .filters-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--background-color);
+    color: rgba(161, 138, 104, 1);
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .Filters {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background-color: var(--background-color);
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  .Filters.open {
+    display: flex;
+  }
+
+  .ProductList {
+    width: 100%;
+  }
+
+  .ProductList .product {
+    width: calc(50% - 10px);
+  }
+
+  .close-filters {
+    display: block;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+}
+
+h1 {
+  font-family: DM Sans;
+  font-size: 33px;
+  font-weight: 500;
+  line-height: 43px;
+  text-align: left;
+}

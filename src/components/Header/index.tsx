@@ -1,37 +1,57 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { themeSlice } from '../../store/reducers/themeSlice'
 import './index.css'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth, logout } from '../../utils/firebase'
-import logo from '../../assets/Modsen SHOPPE.svg'
-import search from '../../assets/Icon color.svg'
-import cart from '../../assets/shopping-cart 1.svg'
-import { userSlice } from '../../store/reducers/userSlice'
 
-const Header: React.FC = () => {
+import { useEffect, useRef, useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { Link, useNavigate } from 'react-router-dom'
+
+import search from '../../assets/Icon color.svg'
+import logo from '../../assets/Modsen SHOPPE.svg'
+import cart from '../../assets/shopping-cart 1.svg'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { getCartItems } from '../../pages/Cart/CartControls/controlFunctions'
+import { toggleTheme } from '../../store/reducers/themeSlice'
+import { CartItem } from '../../types/cartItem'
+import { auth, logout } from '../../utils/firebase'
+
+const Header = () => {
   const [user] = useAuthState(auth)
-  const { isOn } = useAppSelector((state) => state.themeReducer)
   const dispatch = useAppDispatch()
-  const { changeTheme } = themeSlice.actions
-  const { setUser } = userSlice.actions
+
+  const theme = useAppSelector((state) => state.themeReducer)
+  const isOn = theme.theme === 'dark'
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const burgerRef = useRef<HTMLDivElement>(null)
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
 
-  const handleChange = () => {
-    dispatch(changeTheme())
+  const fetchCartItems = async () => {
+    const items = await getCartItems()
+    setCartItems(items)
   }
 
   useEffect(() => {
-    document.body.style.backgroundColor = isOn ? '#707070' : '#ffffff'
-  }, [isOn])
+    fetchCartItems()
+  }, [])
+
+  useEffect(() => {
+    const handleClick = () => {
+      fetchCartItems()
+    }
+
+    document.addEventListener('click', handleClick)
+
+    return () => {
+      document.removeEventListener('click', handleClick)
+    }
+  }, [])
+
+  const handleChange = () => {
+    dispatch(toggleTheme())
+  }
 
   const handleLogout = () => {
     logout()
-    dispatch(setUser(null))
     navigate('/')
   }
 
@@ -61,6 +81,8 @@ const Header: React.FC = () => {
     }
   }, [menuOpen])
 
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
+
   return (
     <header>
       <div className="logo">
@@ -86,7 +108,14 @@ const Header: React.FC = () => {
             <img src={search} className="logo" alt="search" />
           </Link>
           <Link to="/cart">
-            <img src={cart} className="logo" alt="cart" />
+            {totalItems > 0 ? (
+              <div className="cart-with-items">
+                <img src={cart} className="logo" alt="cart" id="CartImg" />
+                <span className="item-count">{totalItems}</span>
+              </div>
+            ) : (
+              <img src={cart} className="logo" alt="cart" id="CartImg" />
+            )}
           </Link>
           {!user ? <Link to="/login">Login</Link> : null}
           {!user ? <Link to="/registration">Registration</Link> : null}
@@ -94,7 +123,14 @@ const Header: React.FC = () => {
         </nav>
         <div className="icons">
           <Link to="/cart" className="cart-icon">
-            <img src={cart} className="logo" alt="cart" />
+            {totalItems ? (
+              <div className="cart-with-items">
+                <img src={cart} className="logo" alt="cart" />
+                <span className="item-count">{totalItems}</span>
+              </div>
+            ) : (
+              <img src={cart} className="logo" alt="cart" />
+            )}
           </Link>
           <div className="burger" ref={burgerRef} onClick={toggleMenu}>
             <div className={`line ${menuOpen ? 'open' : ''}`}></div>
